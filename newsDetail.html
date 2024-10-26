@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Full News</title>
+    <link rel="stylesheet" href="styleNews.css">
+</head>
+
+<body>
+    <section class="main-navbar">
+        <nav class="navbar">
+            <h1 class="navbar-brand">FUTURE<span>PATH</span></h1>
+        </nav>
+    </section>
+
+    <div class="news-content" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <h1 id="newsTitle"></h1>
+        <img id="newsImage" alt="News Image" style="width: 100%; border-radius: 10px;" />
+        <p id="newsParagraph"></p>
+        <button onclick="goBack()"
+            style="margin-top: 20px; padding: 10px 20px; background-color: #0077B6; color: white; border: none; border-radius: 5px; cursor: pointer;">Back
+            to News Page</button>
+    </div>
+
+    <script>
+        // Fungsi untuk kembali ke halaman berita utama
+        function goBack() {
+            window.history.back();
+        }
+
+        // Mendapatkan parameter ID dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get('id');
+
+        // Ambil data berita dari localStorage berdasarkan ID berita
+        const newsData = JSON.parse(localStorage.getItem(newsId));
+
+        // Menampilkan data berita di halaman
+        if (newsData) {
+            document.getElementById('newsTitle').textContent = newsData.title;
+            document.getElementById('newsImage').src = newsData.image;
+            document.getElementById('newsParagraph').textContent = newsData.content;
+        }
+
+
+    </script>
+</body>
+
+</html>
